@@ -32,5 +32,19 @@ function getRecipeById() {
             recipe = recipeData;
             recipeById = recipe.drinks;
             console.log(recipeById)
+
+            if (randomDrinkId !== "") {
+                const imageLink = recipeById.strDrinkThumb;
+                const drinkName = recipeById.strDrink;
+                const dinkInstructions = recipeById.strInstructions;
+                for (let i = 0; i < 15; i++){
+                let ingNrumber = [i];
+                console.log(ingNrumber);
+                };
+            }
         });
+    
+
+    
 }
+getRecipeById();

@@ -4,14 +4,41 @@
 <head>
     <meta charset="UTF-8" />
     <title>Cocktail Finder</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-    <p>This is the Cocktail Finder.</p>
-<form id="form">
-    <input type="submit" value="submit">
-</form>
+    <header>
+        <h1>This is the Cocktail Finder</h1>
+        <a href="./saved/save.html">Saved Recipes</a><!--Link to saved recipes-->
+    </header>
+    <!--header-->
+    <main>
+
+        <section class="columns-4 max-w-[50%] max-h-50">
+            <h1>Please choose the ingredients you wish to have included:</h1>
+
+            <ul id="searchChx"
+                class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                <!--js rendered ingredient buttons render here-->
+            </ul>
+            <button type="button"
+                class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Search</button>
+        </section><!--Search Button-->
+
+        <section><!--Random recipe generator button-->
+            <button type="button"
+                class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Random
+                Search</button>
+        </section>
+
+        <section class="columns-1"></section><!--section for rendered recipe list-->
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
     <script src="script.js"></script>
 </body>
 

@@ -18,6 +18,7 @@ fetch(ingredientsUrl)
         ingr = data; //this assigns the data to a global variable.
         ingredients = ingr.drinks; //this creates an array from all the elements from the drink lable in the data object
         console.log(ingredients);
+        const getSelectedOptions = $('#searchBtn')
         $.each(ingredients, function (_, item) { //this each function creates a loop through each item in the ingredients array
             //the code below creates a check button for each ingredient in the API and creates a unique id for each input element
             const id = item.strIngredient1;
@@ -43,15 +44,16 @@ fetch(ingredientsUrl)
 
 
         });
-        const getSelectedOptions = $('#searchBtn')
+        //This adds the click function for the search button
         $(document).ready(function () {
             (getSelectedOptions).click(function () {
                 let selectedOptions = [];
 
+                //This iterates through each checkbox and determines if they are checked
                 $('input[type="checkbox"]').each(function () {
                     if ($(this).is(':checked')) {
                         let checkboxId = $(this).attr('id');
-                        selectedOptions.push(checkboxId);
+                        selectedOptions.push(checkboxId);//This pushes the ingredient ids to the selectedOptions array
                     }
                 });
 

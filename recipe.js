@@ -3,6 +3,8 @@ let randomJoke;
 let joke = [];
 let recipe;
 let recipeById = [];
+let measurement = [];
+let recipeIng = [];
 const mainContainer = $('#container');
 
 //the followind fetch grabs the info from the API, creates an element and renders the API text in the new element
@@ -33,18 +35,61 @@ function getRecipeById() {
             recipeById = recipe.drinks;
             console.log(recipeById)
 
-            if (randomDrinkId !== "") {
-                const imageLink = recipeById.strDrinkThumb;
-                const drinkName = recipeById.strDrink;
-                const dinkInstructions = recipeById.strInstructions;
-                for (let i = 0; i < 15; i++){
-                let ingNrumber = [i];
-                console.log(ingNrumber);
-                };
-            }
-        });
-    
+            //This following code checks to make sure there is a value to grab from localstorage for the randome recipe id
+            //if there isn't this function will not run
+            if (randomDrinkId) {
 
-    
+                //The following variables take values from the array that was extracted from the object
+                const imageLink = recipeById[0].strDrinkThumb;
+                const drinkName = recipeById[0].strDrink;
+                const drinkInstructions = recipeById[0].strInstructions;
+                console.log(imageLink)
+                //The following for loop grabs all the values in the array with the specified keys
+                for (let key in recipeById[0]) {
+                    if (key.startsWith("strMeasure")) {
+                        measurement.push(recipeById[0][key]);
+
+                    } else if (key.startsWith("strIngredient")) {
+                        recipeIng.push(recipeById[0][key]);
+                    }
+
+                }
+
+                //This will create and append the elements to render the random recipe on the page
+                const divEl = $('<div>');
+                const drinkImg = $('<img>');
+                const drinkH1 = $('<h1>');
+                const instrEl = $('<p>');
+                const ingredUlEl = $('<ul>')
+                instrEl.text(drinkInstructions);
+                drinkH1.text(drinkName);
+                drinkImg.attr('src', imageLink);
+                divEl.attr('class', 'recipeContainer');
+                mainContainer.append(divEl);
+                divEl.append(drinkImg);
+                divEl.append(drinkH1);
+                divEl.append(ingredUlEl);
+                divEl.append(instrEl);
+                divEl.append(ingredUlEl)
+
+                //This function creates a list item for each ingredient and appends it to the list
+                $.each(measurement, function (index, value) {
+                    if (value) {
+                        const ingredListItem = $('<li>');
+                        ingredListItem.text(measurement[index] + recipeIng[index]);
+                        ingredUlEl.append(ingredListItem);
+                        console.log(ingredListItem.text())
+                    };
+                })
+
+
+                console.log(recipeIng)
+
+            }
+
+        });
+
+
+
 }
 getRecipeById();

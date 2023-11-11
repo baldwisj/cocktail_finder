@@ -1,12 +1,13 @@
 const ingredientsUrl = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
 const cocktailsUrl = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail';
+const drinkList = document.getElementById("drink-options")
 const form = document.getElementById('form');
 const searchChx = $("#searchChx");
 let drinkIds = []; // this is an empty array to store the ids that the function assigns to it later
 let ingredients = []; //// this is an empty array to store the ingredients that the function assigns to it later
 let ingr; //this need to be global to get the data for the drink ingredients to the function that uses it
 let drinks; //this need to be global to get the data for the drink ids to the function that uses it
-let ingredientsIds = []
+let ingredientsIds = []; //this is all the ids of every cocktail
 let randomDrink = [];
 
 fetch(ingredientsUrl)
@@ -39,7 +40,7 @@ fetch(ingredientsUrl)
             ingredientBx.attr("for", id);
             ingredientBx.attr('class', 'w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300');
             ingredientBx.text(item.strIngredient1);
-            console.log(ingredientBx);
+
 
 
 
@@ -56,11 +57,26 @@ fetch(ingredientsUrl)
                         selectedOptions.push(checkboxId);//This pushes the ingredient ids to the selectedOptions array
                     }
                 });
-
-                console.log(selectedOptions);
+                const ChosenIngredientsUrl = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + selectedOptions //this give the option to the api address
+                fetch(ChosenIngredientsUrl) 
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (data3) {
+                        let drinkOptions = data3 //this array of objects whos labels are the drink ids and names 
+                        drinkOptions = drinkOptions.drinks //this saves just the array we need so we dont deal with an object with an array inside it
+                        let drinkNames = []//this will be just the list of the names of the drinks
+                        for (let i = 0; i < drinkOptions.length; i++) {//this pushes just the drink names to later be displayed to the page
+                            drinkNames.push(drinkOptions[i].strDrink)
+                        }
+                        for (let i = 0; i < drinkNames.length; i++) {//this displays to the user just the names of the drinks that have the selected ingredient in them
+                            const liEl = document.createElement('li')
+                            liEl.textContent = drinkNames[i]
+                            drinkList.appendChild(liEl)
+                        }
+                    })
             });
         });
-
     });
 
 
@@ -71,13 +87,11 @@ fetch(cocktailsUrl)
     .then(function (data2) {
         drinks = data2 //this assigns the data to a global variable.
         drinks = drinks.drinks //this changes the global variable to be an array instead of an object.
-        console.log(drinks);
+
 
         //The following code generates a random drink recipe and grabs its id
         randomDrink = drinks[Math.floor(Math.random() * drinks.length)]
         let randomDrinkId = parseInt(randomDrink.idDrink);
-        console.log(randomDrink)
-        console.log(randomDrinkId);
         localStorage.setItem('randomId', randomDrinkId);
     })
 

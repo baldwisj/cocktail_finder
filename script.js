@@ -57,6 +57,29 @@ fetch(ingredientsUrl)
                         selectedOptions.push(checkboxId);//This pushes the ingredient ids to the selectedOptions array
                     }
                 });
+
+                        //This function only runs if the HTML is fully loaded
+        $(document).ready(function () {
+            const checkboxes = $('input[type="checkbox"]');
+            //This function initiates when a checkbox in selected
+            checkboxes.on('change', function () {
+                let eachChxBx = $(this);
+                //The following if function determines if each checkbox has teh checked property
+                if (eachChxBx.prop('checked')) {
+                    $.each(checkboxes, function (index, checkbox) {
+                        if (checkbox !== eachChxBx[0]) { //If the checked-checkbox isn't the interated box then it will be disabled
+                            $(checkbox).prop('disabled', true);
+                            $(checkbox).prop('checked', false)
+                        };
+                    });
+                } else {
+                    $.each(checkboxes, function (index, checkbox) {
+                        $(checkbox).prop('disabled', false);
+                    });
+                }
+            });
+            
+        });
                 const ChosenIngredientsUrl = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + selectedOptions //this give the option to the api address
                 fetch(ChosenIngredientsUrl) 
                     .then(function (response) {

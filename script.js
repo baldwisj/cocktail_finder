@@ -56,7 +56,26 @@ fetch(ingredientsUrl)
                         selectedOptions.push(checkboxId);//This pushes the ingredient ids to the selectedOptions array
                     }
                 });
-
+                const ChosenIngredientsUrl = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + selectedOptions //this give the option to the api address
+                fetch(ChosenIngredientsUrl)
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (data3) {
+                        let drinkOptions = data3 //this array of objects whos labels are the drink ids and names 
+                        drinkOptions = drinkOptions.drinks //this saves just the array we need so we dont deal with an object with an array inside it
+                        for (let i = 0; i < drinkOptions.length; i++) {//this displays to the user just the names of the drinks that have the selected ingredient in them
+                            const button = document.createElement("button");
+                            button.textContent = drinkOptions[i].strDrink
+                            button.setAttribute("class", "button")
+                            drinkList.appendChild(button)
+                            button.addEventListener('click', function () {
+                                console.log(drinkOptions[i].idDrink)
+                                // this is where the code to pull us to the other page needs to go. the console log above is the selector for the ids
+                            })
+                        }
+                    })
+            });
                         //This function only runs if the HTML is fully loaded
         $(document).ready(function () {
             const checkboxes = $('input[type="checkbox"]');
@@ -79,26 +98,7 @@ fetch(ingredientsUrl)
             });
             
         });
-                const ChosenIngredientsUrl = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + selectedOptions //this give the option to the api address
-                fetch(ChosenIngredientsUrl)
-                    .then(function (response) {
-                        return response.json();
-                    })
-                    .then(function (data3) {
-                        let drinkOptions = data3 //this array of objects whos labels are the drink ids and names 
-                        drinkOptions = drinkOptions.drinks //this saves just the array we need so we dont deal with an object with an array inside it
-                        for (let i = 0; i < drinkOptions.length; i++) {//this displays to the user just the names of the drinks that have the selected ingredient in them
-                            const button = document.createElement("button");
-                            button.textContent = drinkOptions[i].strDrink
-                            button.setAttribute("class", "button")
-                            drinkList.appendChild(button)
-                            button.addEventListener('click', function () {
-                                console.log(drinkOptions[i].idDrink)
-                                // this is where the code to pull us to the other page needs to go. the console log above is the selector for the ids
-                            })
-                        }
-                    })
-            });
+
         });
     });
 

@@ -3,12 +3,22 @@ const cocktailsUrl = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=C
 const drinkList = document.getElementById("drink-options")
 const form = document.getElementById('form');
 const searchChx = $("#searchChx");
+const randSrchBtn = $('#randomSearchBtn');
 let drinkIds = []; // this is an empty array to store the ids that the function assigns to it later
 let ingredients = []; //// this is an empty array to store the ingredients that the function assigns to it later
 let ingr; //this need to be global to get the data for the drink ingredients to the function that uses it
 let drinks; //this need to be global to get the data for the drink ids to the function that uses it
 let ingredientsIds = []; //this is all the ids of every cocktail
 let randomDrink = [];
+
+
+function startFunction() {
+    localStorage.removeItem('selectedDrinkId');
+    localStorage.removeItem('randomId');
+};
+startFunction();
+
+
 fetch(ingredientsUrl)
     .then(function (response) {
         return response.json();
@@ -71,33 +81,37 @@ fetch(ingredientsUrl)
                             drinkList.appendChild(button)
                             button.addEventListener('click', function () {
                                 console.log(drinkOptions[i].idDrink)
+                                drinkSelectId = parseInt(drinkOptions[i].idDrink)
+                                console.log(drinkSelectId);
+                                localStorage.setItem('selectedDrinkId', drinkSelectId);
+                                window.location.href = './recipe.html'
                                 // this is where the code to pull us to the other page needs to go. the console log above is the selector for the ids
                             })
                         }
                     })
             });
-                        //This function only runs if the HTML is fully loaded
-        $(document).ready(function () {
-            const checkboxes = $('input[type="checkbox"]');
-            //This function initiates when a checkbox in selected
-            checkboxes.on('change', function () {
-                let eachChxBx = $(this);
-                //The following if function determines if each checkbox has teh checked property
-                if (eachChxBx.prop('checked')) {
-                    $.each(checkboxes, function (index, checkbox) {
-                        if (checkbox !== eachChxBx[0]) { //If the checked-checkbox isn't the interated box then it will be disabled
-                            $(checkbox).prop('disabled', true);
-                            $(checkbox).prop('checked', false)
-                        };
-                    });
-                } else {
-                    $.each(checkboxes, function (index, checkbox) {
-                        $(checkbox).prop('disabled', false);
-                    });
-                }
+            //This function only runs if the HTML is fully loaded
+            $(document).ready(function () {
+                const checkboxes = $('input[type="checkbox"]');
+                //This function initiates when a checkbox in selected
+                checkboxes.on('change', function () {
+                    let eachChxBx = $(this);
+                    //The following if function determines if each checkbox has teh checked property
+                    if (eachChxBx.prop('checked')) {
+                        $.each(checkboxes, function (index, checkbox) {
+                            if (checkbox !== eachChxBx[0]) { //If the checked-checkbox isn't the interated box then it will be disabled
+                                $(checkbox).prop('disabled', true);
+                                $(checkbox).prop('checked', false)
+                            };
+                        });
+                    } else {
+                        $.each(checkboxes, function (index, checkbox) {
+                            $(checkbox).prop('disabled', false);
+                        });
+                    }
+                });
+
             });
-            
-        });
 
         });
     });
@@ -113,19 +127,23 @@ fetch(cocktailsUrl)
 
 
         //The following code generates a random drink recipe and grabs its id
-        randomDrink = drinks[Math.floor(Math.random() * drinks.length)]
-        let randomDrinkId = parseInt(randomDrink.idDrink);
-        localStorage.setItem('randomId', randomDrinkId);
-    })
+        function handleRandClick() {
+            randomDrink = drinks[Math.floor(Math.random() * drinks.length)]
+            let randomDrinkId = parseInt(randomDrink.idDrink);
+            localStorage.setItem('randomId', randomDrinkId);
+        };
+        randSrchBtn.on('click', handleRandClick);
+    });
 
+  
 function getIds() { // this is the function to get the ids of every cocktail available from the api.
     for (let i = 0; i < drinks.length; i++) {
         drinkIds.push(drinks[i].idDrink)
     }
 }
 
-form.addEventListener("submit", function (event) { // this is the submit button for the form with the prevent default already in place.
-    event.preventDefault()
-})
+// form.addEventListener("submit", function (event) { // this is the submit button for the form with the prevent default already in place.
+//     event.preventDefault()
+// })
 
 

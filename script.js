@@ -80,7 +80,7 @@ fetch(ingredientsUrl)
                         for (let i = 0; i < drinkOptions.length; i++) {//this displays to the user the drinks that have the selected ingredient in them
                             const button = document.createElement("button");
                             button.textContent = drinkOptions[i].strDrink
-                            button.setAttribute("class", "button")
+                            button.setAttribute("class", "button ring-0")
                             drinkList.appendChild(button)
                             button.addEventListener('click', function () {
                                 console.log(drinkOptions[i].idDrink)

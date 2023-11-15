@@ -11,12 +11,41 @@
 </head>
 
 <body>
-    <header>
+    <header class="flex justify-center">
         <h1>This is the Cocktail Finder</h1>
         <a href="./save.html">Saved Recipes</a><!--Link to saved recipes-->
     </header>
     <!--header-->
     <main>
+        <div class="flex justify-evenly">
+            <div class="max-w-[70%]">
+                <h2 class="flex justify-center">Please choose the ingredients you wish to have included:</h2>
+                <ul id="searchChx" class="columns-7"
+                    class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    <!--js rendered ingredient buttons render here-->
+                </ul>
+                
+            </div><!--Search Button-->
+
+            <div class="flex-col max-w-[25%] min-w-[25%]">
+                <h2 class="flex justify-center">Please choose from the following list after search</h2>
+                <section class="flex justify-evenly"><!--Random recipe generator button-->
+                    <button type="button" id="randomSearchBtn"
+                        class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Random
+                        Search</button>
+                        <button type="button" id="searchBtn"
+                        class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Search</button>
+                </section>
+
+                <div id="drink-options" class="flex flex-col">
+                    <!--js rendered drink options render here-->
+                </div>
+            </div><!--section for rendered recipe list-->
+        </div>
+
+       
+
+
 
         <section class="columns-4 max-w-[50%] max-h-50">
             <h1>Please choose the ingredients you wish to have included:</h1>
@@ -47,6 +76,7 @@
                 <!--js rendered drink options render here-->
             </div>
         </section><!--section for rendered recipe list-->
+
     </main>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

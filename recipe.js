@@ -163,6 +163,14 @@ function getRandomRecipeById() {
                     };
                 })
 
+               //this function stores in local stoarge
+               function display () {
+               localStorage.setItem("Recipe", recipe);
+               console.log(localStorage.getItem(recipeById));
+               localStorage.getItem(recipeById)
+            }
+
+
 
                 console.log(recipeIng)
 

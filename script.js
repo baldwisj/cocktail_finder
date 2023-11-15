@@ -133,6 +133,7 @@ fetch(cocktailsUrl)
             randomDrink = drinks[Math.floor(Math.random() * drinks.length)]
             let randomDrinkId = parseInt(randomDrink.idDrink);
             localStorage.setItem('randomId', randomDrinkId);
+            window.location.href = './recipe.html'
         };
         randSrchBtn.on('click', handleRandClick);
     });

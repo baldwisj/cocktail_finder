@@ -10,23 +10,31 @@
 </head>
 
 <body>
-    <header>
+    <header class="flex justify-center">
         <h1>This is the Cocktail Finder</h1>
         <a href="./saved/save.html">Saved Recipes</a><!--Link to saved recipes-->
     </header>
     <!--header-->
     <main>
+        <div class="flex">
+            <div class="flex-row max-w-[40%]">
+                <h2>Please choose the ingredients you wish to have included:</h2>
 
-        <section class="columns-4 max-w-[50%] max-h-50">
-            <h1>Please choose the ingredients you wish to have included:</h1>
+                <ul id="searchChx"
+                    class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    <!--js rendered ingredient buttons render here-->
+                </ul>
+                <button type="button" id="searchBtn"
+                    class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Search</button>
+            </div><!--Search Button-->
 
-            <ul id="searchChx"
-                class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                <!--js rendered ingredient buttons render here-->
-            </ul>
-            <button type="button" id = "searchBtn"
-                class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Search</button>
-        </section><!--Search Button-->
+            <div class="flex-row max-w-[20%]">
+                <h2>Please choose from the following list after search</h2>
+                <div id="drink-options" class="max-w-[100%]">
+                    <!--js rendered drink options render here-->
+                </div>
+            </div><!--section for rendered recipe list-->
+        </div>
 
         <section><!--Random recipe generator button-->
             <button type="button"
@@ -34,11 +42,6 @@
                 Search</button>
         </section>
 
-        <section class="columns-1">
-            <div id="drink-options">
-                <!--js rendered drink options render here-->
-            </div>
-        </section><!--section for rendered recipe list-->
     </main>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

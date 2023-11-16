@@ -8,7 +8,8 @@ let selectedRecipeId = [];
 let selectMeasurement = [];
 let measurement = [];
 let recipeIng = [];
-let recipeIng1 = []
+let recipeIng1 = [];
+let savedRecipes = [];
 const mainContainer = $('#container');
 
 //The following code grabs a random joke from the API and renders it to the page
@@ -66,17 +67,22 @@ function getSelectedRecipeById() {
                 const drinkImg1 = $('<img>');
                 const drinkH11 = $('<h1>');
                 const instrEl1 = $('<p>');
-                const ingredUlEl1 = $('<ul>')
+                const ingredUlEl1 = $('<ul>');
+                const srchSvBtn = $('<button>');
                 instrEl1.text(drinkInstructions1);
                 drinkH11.text(drinkName1);
                 drinkImg1.attr('src', imageLink1);
                 divEl1.attr('class', 'recipeContainer');
+                srchSvBtn.attr('class',"text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2")
+                srchSvBtn.text('Save Recipe');
+                srchSvBtn.attr('id', 'saveSearch')
                 mainContainer.append(divEl1);
                 divEl1.append(drinkImg1);
                 divEl1.append(drinkH11);
                 divEl1.append(ingredUlEl1);
                 divEl1.append(instrEl1);
                 divEl1.append(ingredUlEl1)
+                mainContainer.append(srchSvBtn);
 
                 //This function creates a list item for each ingredient and appends it to the list
                 $.each(selectMeasurement, function (index, value) {
@@ -87,9 +93,27 @@ function getSelectedRecipeById() {
                         console.log(ingredListItem1.text())
                     };
                 })
+                const savedSearch = $('#saveSearch');
+                function handleSaveRecipe() {
+                    let allSavedRecipes = localStorage.getItem('savedRecipes');
+                    if (allSavedRecipes) {
+                        savedRecipes = JSON.parse(allSavedRecipes);
+                    }
+                    if (allSavedRecipes && allSavedRecipes.includes(selectedDrinkId)) {
+                        const recipeExistingSave = $('<p>');
+                        mainContainer.append(recipeExistingSave);
+                        recipeExistingSave.text('Recipe Already Saved');
+                    } else {
+                    savedRecipes.push(selectedDrinkId);
+                    localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
+                    const recipeSvdMessage = $('<p>');
+                    mainContainer.append(recipeSvdMessage);
+                    recipeSvdMessage.text('Recipe Saved');
+                    };
+                };
+                savedSearch.on('click', handleSaveRecipe);
 
-
-                console.log(recipeIng1)
+                
 
             }
 
@@ -141,17 +165,23 @@ function getRandomRecipeById() {
                 const drinkImg = $('<img>');
                 const drinkH1 = $('<h1>');
                 const instrEl = $('<p>');
-                const ingredUlEl = $('<ul>')
+                const ingredUlEl = $('<ul>');
+                const randSvBtn = $('<button>');
                 instrEl.text(drinkInstructions);
                 drinkH1.text(drinkName);
                 drinkImg.attr('src', imageLink);
                 divEl.attr('class', 'recipeContainer');
+                randSvBtn.attr('class',"text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2")
+                randSvBtn.text('Save Recipe');
+                randSvBtn.attr('id', 'saveRand');
                 mainContainer.append(divEl);
                 divEl.append(drinkImg);
                 divEl.append(drinkH1);
                 divEl.append(ingredUlEl);
                 divEl.append(instrEl);
                 divEl.append(ingredUlEl)
+                mainContainer.append(randSvBtn)
+
 
                 //This function creates a list item for each ingredient and appends it to the list
                 $.each(measurement, function (index, value) {
@@ -162,13 +192,25 @@ function getRandomRecipeById() {
                         console.log(ingredListItem.text())
                     };
                 })
-
-               //this function stores in local stoarge
-               function display () {
-               localStorage.setItem("Recipe", recipe);
-               console.log(localStorage.getItem(recipeById));
-               localStorage.getItem(recipeById)
-            }
+                const randSearch = $('#saveRand');
+                function handleSaveRecipe2() {
+                    let allSavedRecipes = localStorage.getItem('savedRecipes');
+                    if (allSavedRecipes) {
+                        savedRecipes = JSON.parse(allSavedRecipes);
+                    }
+                    if (allSavedRecipes && allSavedRecipes.includes(randomDrinkId)) {
+                        const recipeExistingSave = $('<p>');
+                        mainContainer.append(recipeExistingSave);
+                        recipeExistingSave.text('Recipe Already Saved');
+                    } else {
+                    savedRecipes.push(randomDrinkId);
+                    localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
+                    const recipeSvdMessage = $('<p>');
+                    mainContainer.append(recipeSvdMessage);
+                    recipeSvdMessage.text('Recipe Saved');
+                    };
+                };
+                randSearch.on('click', handleSaveRecipe2);
 
 
 

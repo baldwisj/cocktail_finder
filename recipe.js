@@ -172,6 +172,7 @@ function getRandomRecipeById() {
                 instrEl.text(drinkInstructions);
                 drinkH1.text(drinkName);
                 drinkImg.attr('src', imageLink);
+                drinkImg.attr('class', 'inline-block');
                 divEl.attr('class', 'recipeContainer');
                 randSvBtn.attr('class',"text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2")
                 randSvBtn.text('Save Recipe');

@@ -49,6 +49,7 @@ fetch(ingredientsUrl)
             ingredientBx.attr("for", id);
             ingredientBx.attr('class', 'w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300');
             ingredientBx.text(item.strIngredient1);
+    
         });
 
         //This adds the click function for the search button
@@ -144,3 +145,15 @@ function getIds() { // this is the function to get the ids of every cocktail ava
         drinkIds.push(drinks[i].idDrink)
     }
 }
+
+  fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list')
+    .then(response => response.json())
+    .then(data => {
+      const selectElement = document.getElementById('options');
+      data.forEach(option => {
+        const optionElement = document.createElement('option');
+        optionElement.value = option.value;
+        optionElement.text = option.text;
+        selectElement.appendChild(optionElement);
+      });
+    });

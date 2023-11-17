@@ -21,6 +21,7 @@ fetch(randomJokeApi)
         randomJoke = jokeData;
         joke = randomJoke.joke;
         const pEl = $('<p>').text(joke);
+        mainContainer.attr('class', 'text-center');
         mainContainer.append(pEl);
     });
 
@@ -72,7 +73,8 @@ function getSelectedRecipeById() {
                 instrEl1.text(drinkInstructions1);
                 drinkH11.text(drinkName1);
                 drinkImg1.attr('src', imageLink1);
-                divEl1.attr('class', 'recipeContainer');
+                drinkImg1.attr('class', 'inline-block');
+                divEl1.attr('class', 'recipeContainer text-center');
                 srchSvBtn.attr('class',"text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2")
                 srchSvBtn.text('Save Recipe');
                 srchSvBtn.attr('id', 'saveSearch')

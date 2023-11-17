@@ -145,7 +145,7 @@ function getIds() { // this is the function to get the ids of every cocktail ava
         drinkIds.push(drinks[i].idDrink)
     }
 }
-
+// Select multiple ingrediets from list
   fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list')
     .then(response => response.json())
     .then(data => {
@@ -156,4 +156,12 @@ function getIds() { // this is the function to get the ids of every cocktail ava
         optionElement.text = option.text;
         selectElement.appendChild(optionElement);
       });
+    
+      
+    
+    
+    
+    
     });
+
+

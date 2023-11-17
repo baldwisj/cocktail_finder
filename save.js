@@ -92,5 +92,28 @@ if (AllSavedRecipes) {
 
             })
     })
-
+// delete buttons on save page
+fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list')
+.then(response => response.json())
+.then(data => {
+  const selectElement = document.getElementById('options');
+  data.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option.value;
+    optionElement.text = option.text;
+    
+    const deleteButton = document.createElement('button');
+    deleteButton.innerText = 'Delete';
+   
+    deleteButton.addEventListener('click', () => {
+        selectElement.removeChild(optionElement);
+      });
+      
+      const optionContainer = document.createElement('div');
+      optionContainer(optionElement);
+      optionContainer.appendChild(deleteButton);
+      
+      selectElement.appendChild(optionContainer);
+    });
+  });
 };

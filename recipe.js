@@ -86,12 +86,12 @@ function getSelectedRecipeById() {
                         ingredUlEl1.append(ingredListItem1);
                         console.log(ingredListItem1.text())
                     };
-                })
 
 
                 console.log(recipeIng1)
+               
+                console.log(recipeIng1)
 
-            }
 
         });
 

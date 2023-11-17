@@ -49,6 +49,7 @@ fetch(ingredientsUrl)
             ingredientBx.attr("for", id);
             ingredientBx.attr('class', 'w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300');
             ingredientBx.text(item.strIngredient1);
+            multiselect result "Option 1,option 2, option 3" "true;;true"
         });
 
         //This adds the click function for the search button

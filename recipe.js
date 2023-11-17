@@ -227,3 +227,17 @@ function getRandomRecipeById() {
 
 }
 getRandomRecipeById();
+
+//Select multiple options
+function submitForm() {
+    const selectElement = document.getElementById('options');
+    const selectedOptions = [];
+    
+    for (const i = 0; i < selectElement.options.length; i++) {
+      if (selectElement.options[i].selected) {
+        selectedOptions.push(selectElement.options[i].value);
+      }
+    }
+    fetch('/api/endpoint', { method: 'POST', body: JSON.stringify(recipeById) });
+   
+  }

@@ -1,0 +1,36 @@
+header {
+    padding: 15px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+}
+
+header h1 {
+    
+    font-size: 30px;
+}
+
+header nav {
+    float: right;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+} 
+
+header nav ul {
+    list-style-type: none;
+}
+
+header ul li {
+    display: inline-block;
+    margin-left: 25px;
+}
+
+a {
+    color: var(--light-grey);
+    text-decoration: none;
+} /* Navigation links */
+
+a:hover {
+    color: #89ECB0;
+    text-decoration: underline;
+} /*Hover psuedocode for navigation links*/
+/* End of Header and navigation attributes*/

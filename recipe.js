@@ -11,6 +11,8 @@ let recipeIng = [];
 let recipeIng1 = [];
 let savedRecipes = [];
 const mainContainer = $('#container');
+const svBtnCont = $('#save-button-container');
+svBtnCont.attr('class', 'text-center')
 
 //The following code grabs a random joke from the API and renders it to the page
 fetch(randomJokeApi)
@@ -72,15 +74,16 @@ function getSelectedRecipeById() {
                 const srchSvBtn = $('<button>');
                 instrEl1.text(drinkInstructions1);
                 drinkH11.text(drinkName1);
+                drinkH11.attr('class', 'text-2xl')
                 drinkImg1.attr('src', imageLink1);
-                drinkImg1.attr('class', 'inline-block');
-                divEl1.attr('class', 'recipeContainer text-center');
+                drinkImg1.attr('class', 'inline-block w-80');
+                divEl1.attr('class', 'recipeContainer');
                 srchSvBtn.attr('class',"text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2")
                 srchSvBtn.text('Save Recipe');
                 srchSvBtn.attr('id', 'saveSearch')
                 mainContainer.append(divEl1);
-                divEl1.append(drinkImg1);
                 divEl1.append(drinkH11);
+                divEl1.append(drinkImg1);
                 divEl1.append(ingredUlEl1);
                 divEl1.append(instrEl1);
                 divEl1.append(ingredUlEl1)
@@ -109,8 +112,9 @@ function getSelectedRecipeById() {
                     savedRecipes.push(selectedDrinkId);
                     localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
                     const recipeSvdMessage = $('<p>');
-                    mainContainer.append(recipeSvdMessage);
+                    svBtnCont.append(recipeSvdMessage);
                     recipeSvdMessage.text('Recipe Saved');
+                    recipeSvdMessage.attr('class','italic font-light text-purple-900');
                     };
                 };
                 savedSearch.on('click', handleSaveRecipe);
@@ -178,8 +182,8 @@ function getRandomRecipeById() {
                 randSvBtn.text('Save Recipe');
                 randSvBtn.attr('id', 'saveRand');
                 mainContainer.append(divEl);
-                divEl.append(drinkImg);
                 divEl.append(drinkH1);
+                divEl.append(drinkImg);
                 divEl.append(ingredUlEl);
                 divEl.append(instrEl);
                 divEl.append(ingredUlEl)
@@ -211,6 +215,7 @@ function getRandomRecipeById() {
                     const recipeSvdMessage = $('<p>');
                     mainContainer.append(recipeSvdMessage);
                     recipeSvdMessage.text('Recipe Saved');
+                    recipeSvdMessage.attr('class','italic font-light text-purple-900');
                     };
                 };
                 randSearch.on('click', handleSaveRecipe2);

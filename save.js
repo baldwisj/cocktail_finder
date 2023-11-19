@@ -1,23 +1,9 @@
-//Save Button
-
-// function save (){
-// var item = document.getitem("storeditem");
-// localStorage.setItem("storeditem", recipeById);
-// document.getElementById("savedtext").innerHTML = recipeById + "saved";
-
-// }
-
-// function get(){
-// localStorage.getItem("storeditem");
-// document.getElementById("openedtext").innerHTML = storeditem + "OPENED";
-
-
-// }
 const drinkList = $("#drink-options")
 const recipeRender = $('#recipeRender')
 recipeIng1 = [];
 selectMeasurement = [];
 const AllSavedRecipes = localStorage.getItem('savedRecipes')
+drinkList.attr('class','')
 
 if (AllSavedRecipes) {
     let prsSavedRecipes = JSON.parse(AllSavedRecipes);
@@ -39,13 +25,16 @@ if (AllSavedRecipes) {
                 listButton.text(savedRecipeData.strDrink);
                 listButton.attr("class", "button ring-0");
                 drinkList.append(listButton);
+                listButton.attr('class', 'button ring-0 bg-green-400 m-2 p-1 hover: bg-gradient-to-br hover:from-blue-900 hover:to-green-400 hover:text-white rounded-lg')
 
                 listButton.on('click', function handleSavedRecClick() {
                     drinkSelectId = parseInt(savedRecipeData.idDrink)
                     console.log(savedRecipeData.idDrink);
                     const recipeRenderEl = recipeRender.get(0)
+                    
                     while (recipeRenderEl.hasChildNodes()) {
                         recipeRenderEl.removeChild(recipeRenderEl.firstChild);
+                        
                     }
 
                     const imageLink1 = savedRecipeData.strDrinkThumb;
@@ -63,21 +52,29 @@ if (AllSavedRecipes) {
 
                     }
 
+                    const divElCont = $('<div>');
                     const divEl1 = $('<div>');
+                    const divEl2 = $('<div>');
                     const drinkImg1 = $('<img>');
                     const drinkH11 = $('<h1>');
                     const instrEl1 = $('<p>');
                     const ingredUlEl1 = $('<ul>');
                     instrEl1.text(drinkInstructions1);
                     drinkH11.text(drinkName1);
+                    drinkH11.attr('class','bg-purple-400 font-bold text-xl text-white')
                     drinkImg1.attr('src', imageLink1);
-                    divEl1.attr('class', 'recipeContainer');
-                    recipeRender.append(divEl1);
+                    ingredUlEl1.attr('class','content-center m-6');
+                    instrEl1.attr('class','m-6')
+                    divEl1.attr('class', 'inline-block w-1/2');
+                    divEl1.attr('class', 'inline-block w-1/2');
+                    divElCont.attr('class','space-x-3 flex flex-row mt-6');
+                    recipeRender.append(drinkH11);
+                    recipeRender.append(divElCont);
+                    divElCont.append(divEl1);
+                    divElCont.append(divEl2);
                     divEl1.append(drinkImg1);
-                    divEl1.append(drinkH11);
-                    divEl1.append(ingredUlEl1);
-                    divEl1.append(instrEl1);
-                    divEl1.append(ingredUlEl1)
+                    divEl2.append(ingredUlEl1);
+                    divEl2.append(instrEl1);
                     
 
                     $.each(selectMeasurement, function (index, value) {

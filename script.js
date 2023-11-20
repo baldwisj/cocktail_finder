@@ -145,5 +145,6 @@ function getIds() { // this is the function to get the ids of every cocktail ava
         drinkIds.push(drinks[i].idDrink)
     }
 }
+ 
 
 
